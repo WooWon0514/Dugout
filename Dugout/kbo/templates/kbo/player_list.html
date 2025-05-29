@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}선수 목록{% endblock %}
+
+{% block content %}
+<h1>선수 목록</h1>
+
+<table border="1">
+  <tr>
+    <th>이름</th>
+    <th>소속 팀</th>
+    <th>포지션</th>
+    <th>경기수</th>
+    <th>타율</th>
+    <th>홈런</th>
+    <th>타점</th>
+  </tr>
+  {% for player in players %}
+  <tr>
+    <td>{{ player.name }}</td>
+    <td>{{ player.team.name }}</td>
+    <td>{{ player.position }}</td>
+    <td>{{ player.games }}</td>
+    <td>{{ player.avg }}</td>
+    <td>{{ player.hr }}</td>
+    <td>{{ player.rbi }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="7">등록된 선수가 없습니다.</td></tr>
+  {% endfor %}
+</table>
+
+<br>
+<a href="{% url 'register_player' %}">선수 등록하러 가기</a>
+{% endblock %}
