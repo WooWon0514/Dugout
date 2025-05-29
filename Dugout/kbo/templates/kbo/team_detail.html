@@ -1,0 +1,14 @@
+<h1>{{ team.name }} 상세 정보</h1>
+<p>승: {{ team.wins }} / 패: {{ team.losses }} / 무: {{ team.draws }}</p>
+
+<h2>소속 선수 목록</h2>
+<ul>
+  {% for player in players %}
+    <li>{{ player.name }} - 포지션: {{ player.position }} / AVG: {{ player.avg }}</li>
+  {% empty %}
+    <li>등록된 선수가 없습니다.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'player_create' %}">선수 등록하기</a>
+<a href="{% url 'player_list' %}">전체 선수 보기</a>
