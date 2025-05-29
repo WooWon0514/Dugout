@@ -1,7 +1,13 @@
 # accounts/forms.py
-from django.contrib.auth.forms import AuthenticationForm
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(label="ID")
-    password = forms.CharField(label="PW", widget=forms.PasswordInput)
+    def __init__(self, *args, **kwargs):
+        super(CustomAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'placeholder': 'ID:',
+        })
+        self.fields['password'].widget.attrs.update({
+            'placeholder': 'PW:',
+        })

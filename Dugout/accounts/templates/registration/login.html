@@ -1,7 +1,83 @@
-<h2>로그인</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">로그인</button>
-</form>
-<a href="{% url 'accounts:signup' %}">회원가입</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>KBO Login</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-box {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+        .login-box img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .login-box h2 {
+            margin-bottom: 30px;
+        }
+        .login-box input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background-color: #e0e0e0;
+            font-size: 16px;
+        }
+        .login-box button {
+            background-color: #66b3ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-box button:hover {
+            background-color: #4da6ff;
+        }
+        .signup-link {
+            margin-top: 20px;
+            display: block;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <img src="{% static 'images/kbo_logo.png' %}" alt="KBO Logo">
+        <h2>KBO Statistics</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            {{ form.username }}
+            {{ form.password }}
+
+            <button type="submit">로그인</button>
+        </form>
+
+        <a href="{% url 'accounts:signup' %}" class="signup-link">회원가입</a>
+    </div>
+</body>
+</html>
