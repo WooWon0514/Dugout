@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>KBO 홈</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      padding: 30px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      flex: 1 1 300px;
+      min-width: 300px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>{{ user.username }}님, 환영합니다!</h2>
+  <div class="container">
+    <div class="card">
+      <div class="title">금일 경기 일정</div>
+      <p>LG vs 한화</p>
+      <p>두산 vs KT</p>
+    </div>
+    <div class="card">
+      <div class="title">팀 순위</div>
+      <p>1위. LG XXX</p>
+      <p>2위. KT XXX</p>
+    </div>
+    <div class="card">
+      <div class="title">즐겨찾는 팀/선수</div>
+      <p>즐겨찾는 팀: XX</p>
+      <p>즐겨찾는 선수: XXX</p>
+    </div>
+  </div>
+</body>
+</html>
