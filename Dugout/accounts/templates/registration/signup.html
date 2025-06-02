@@ -57,6 +57,12 @@
             text-decoration: none;
             font-size: 14px;
         }
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -66,17 +72,20 @@
 
         <form method="post">
             {% csrf_token %}
+
             {{ form.non_field_errors }}
 
-            {{ form.username }}
-            {{ form.password1 }}
-            {{ form.password2 }}
+            {% for field in form %}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors|striptags }}</div>
+                {% endif %}
+            {% endfor %}
 
             <button type="submit">가입하기</button>
         </form>
 
         <a href="{% url 'accounts:login' %}" class="signup-link">이미 계정이 있으신가요? 로그인</a>
-
     </div>
 </body>
 </html>

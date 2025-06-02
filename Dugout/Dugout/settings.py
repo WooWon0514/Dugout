@@ -55,8 +55,10 @@ ROOT_URLCONF = 'Dugout.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'accounts/templates']
-        ,
+        'DIRS': [
+            BASE_DIR / 'accounts/templates',
+            BASE_DIR / 'templates',  # ✅ 추가: 메인 index.html 경로
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

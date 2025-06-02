@@ -27,7 +27,8 @@
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/DUGOUT/accounts/templates" />
+        <option value="$MODULE_DIR$/Dugout/accounts/templates" />
+        <option value="$MODULE_DIR$/Dugout/templates" />
       </list>
     </option>
   </component>
