@@ -1,0 +1,13 @@
+<h2>타자 TOP 10 (타율)</h2>
+<ul>
+  {% for hitter in hitters %}
+    <li>{{ hitter.name }} - {{ hitter.batting_avg|floatformat:3 }}</li>
+  {% endfor %}
+</ul>
+
+<h2>투수 TOP 10 (ERA)</h2>
+<ul>
+  {% for pitcher in pitchers %}
+    <li>{{ pitcher.name }} - {{ pitcher.era|floatformat:2 }}</li>
+  {% endfor %}
+</ul>
