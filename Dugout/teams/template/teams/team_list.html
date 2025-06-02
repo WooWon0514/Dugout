@@ -1,0 +1,6 @@
+<h2>팀 순위</h2>
+<ul>
+  {% for team in teams %}
+    <li>{{ team.ranking }}위 - {{ team.name }} ({{ team.wins }}승 {{ team.losses }}패 {{ team.draws }}무)</li>
+  {% endfor %}
+</ul>
