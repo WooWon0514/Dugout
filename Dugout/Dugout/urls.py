@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),  # 여기를 이렇게 수정!
-    path('', views.index, name='index'),
     path('', include('main.urls')),  # 메인페이지 루트에 매핑
 
 
