@@ -1,0 +1,41 @@
+<!-- main/templates/main/main.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h4 class="mb-3">금일 경기 일정</h4>
+  <div class="row g-3">
+    {% for game in today_games %}
+    <div class="col-6 col-md-3">
+      <div class="card text-center p-2">
+        <strong>{{ game.home }} vs {{ game.away }}</strong>
+        <div>{{ game.info }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h4 class="mt-5 mb-3">팀 순위</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h6>승률 경기 승 무 패 타율 평균자책</h6>
+        <ul class="list-unstyled">
+          {% for team in team_rankings %}
+          <li>{{ team }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h6>승률 경기 승 무 패 타율 평균자책</h6>
+        <ul class="list-unstyled">
+          {% for team in team_rankings %}
+          <li>{{ team }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

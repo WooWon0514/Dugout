@@ -29,6 +29,7 @@
       <list>
         <option value="$MODULE_DIR$/Dugout/accounts/templates" />
         <option value="$MODULE_DIR$/Dugout/templates" />
+        <option value="$MODULE_DIR$/Dugout/main/templates" />
       </list>
     </option>
   </component>
