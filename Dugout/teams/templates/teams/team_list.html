@@ -1,0 +1,88 @@
+{% load humanize %}
+{% load dict_filters %}
+{% load math_filters %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 팀 목록</title>
+</head>
+<body>
+    <h2>📈 팀 리스트</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>팀</th>
+                <th>승</th>
+                <th>패</th>
+                <th>무</th>
+                <th>타율1위</th>
+                <th>출루율1위</th>
+                <th>장타율1위</th>
+                <th>ERA1위</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+            <tr>
+                <td>{{ team.name }}</td>
+                <td>{{ team.wins }}</td>
+                <td>{{ team.losses }}</td>
+                <td>{{ team.draws }}</td>
+                <td>{{ team.highlights|get_item:"타율"|first }} ({{ team.highlights|get_item:"타율"|last }})</td>
+                <td>{{ team.highlights|get_item:"출루율"|first }} ({{ team.highlights|get_item:"출루율"|last }})</td>
+                <td>{{ team.highlights|get_item:"장타율"|first }} ({{ team.highlights|get_item:"장타율"|last }})</td>
+                <td>{{ team.highlights|get_item:"ERA"|first }} ({{ team.highlights|get_item:"ERA"|last }})</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="8">데이터가 없습니다.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>🏟️ 팀 정보</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>순위</th>
+                <th>팀명</th>
+                <th>경기수</th>
+                <th>승</th>
+                <th>무</th>
+                <th>패</th>
+                <th>승률</th>
+                <th>득점</th>
+                <th>실점</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+            {% with total=team.wins|add:team.draws|add:team.losses %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ team.name }}</td>
+                <td>{{ total|intcomma }}</td>
+                <td>{{ team.wins }}</td>
+                <td>{{ team.draws }}</td>
+                <td>{{ team.losses }}</td>
+                <td>
+                    {% if total > 0 %}
+                        {{ team.wins|div:total|floatformat:3 }}
+                    {% else %}
+                        0.000
+                    {% endif %}
+                </td>
+                <td>{{ team.runs_scored|default:0 }}</td>
+                <td>{{ team.runs_allowed|default:0 }}</td>
+                <td>{{ team.views|intcomma|default:"0" }}</td>
+            </tr>
+            {% endwith %}
+            {% empty %}
+            <tr><td colspan="10">등록된 팀이 없습니다.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

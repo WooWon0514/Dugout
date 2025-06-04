@@ -1,8 +1,7 @@
-from django.urls import path, include
-from .views import team_list
-
+from django.urls import path
+from .views import team_list, kia_team_detail, sync_teams
 urlpatterns = [
-    path('', team_list, name='team_list'),
+    path('list/', team_list, name='team_list'),
+    path('kia/', kia_team_detail, name='kia_team_detail'),
+    path('sync/', sync_teams, name='sync_teams'),
 ]
-
-path('teams/', include('teams.urls')),
