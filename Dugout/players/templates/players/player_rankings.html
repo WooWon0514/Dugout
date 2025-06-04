@@ -1,0 +1,23 @@
+{% load humanize %}
+
+<h2>📊 선수 인기순위 (조회수)</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>순위</th>
+            <th>이름</th>
+            <th>조회수</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in rankings %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.views|intcomma }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">데이터 없음</td></tr>
+        {% endfor %}
+    </tbody>
+</table>

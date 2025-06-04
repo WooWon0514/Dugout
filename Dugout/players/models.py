@@ -1,21 +1,24 @@
 from django.db import models
-from teams.models import Team
 
-class Player(models.Model):
-    POSITION_CHOICES = [
-        ('P', 'Pitcher'),
-        ('C', 'Catcher'),
-        ('IF', 'Infielder'),
-        ('OF', 'Outfielder'),
-        ('DH', 'Designated Hitter'),
-    ]
-
+class PlayerWAR(models.Model):
     name = models.CharField(max_length=100)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    position = models.CharField(max_length=3, choices=POSITION_CHOICES)
-    war = models.FloatField(default=0.0)
+    position = models.CharField(max_length=10)
     batting_avg = models.FloatField(null=True, blank=True)
     era = models.FloatField(null=True, blank=True)
+    war = models.FloatField(null=True, blank=True)  # 👈 이거 추가!
 
     def __str__(self):
-        return f"{self.name} ({self.team.name})"
+        return self.name
+
+# players/models.py
+from django.db import models
+
+class Player(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=20)
+    batting_avg = models.FloatField(null=True, blank=True)
+    era = models.FloatField(null=True, blank=True)
+    views = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
