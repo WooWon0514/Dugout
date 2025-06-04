@@ -12,8 +12,6 @@ def kia_team_detail(request):
     team_data = fetch_team_data(team_code='2002', year=2025)
     return render(request, 'teams/kia_team_detail.html', {'team': team_data})
 
-# teams/views.py
-
 from django.shortcuts import redirect
 from .utils import fetch_all_teams_data, save_team_data
 

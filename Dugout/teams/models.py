@@ -1,15 +1,10 @@
 from django.db import models
 
 class Team(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50, unique=True)
     wins = models.IntegerField()
     losses = models.IntegerField()
     draws = models.IntegerField()
-
-    runs_scored = models.IntegerField(default=0)
-    runs_allowed = models.IntegerField(default=0)
-    views = models.IntegerField(default=0)
-    games = models.IntegerField(default=0)
 
     highlights = models.JSONField(default=dict)
     matchups = models.JSONField(default=dict)

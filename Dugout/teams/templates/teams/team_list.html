@@ -30,10 +30,11 @@
                 <td>{{ team.wins }}</td>
                 <td>{{ team.losses }}</td>
                 <td>{{ team.draws }}</td>
-                <td>{{ team.highlights|get_item:"타율"|first }} ({{ team.highlights|get_item:"타율"|last }})</td>
-                <td>{{ team.highlights|get_item:"출루율"|first }} ({{ team.highlights|get_item:"출루율"|last }})</td>
-                <td>{{ team.highlights|get_item:"장타율"|first }} ({{ team.highlights|get_item:"장타율"|last }})</td>
-                <td>{{ team.highlights|get_item:"ERA"|first }} ({{ team.highlights|get_item:"ERA"|last }})</td>
+                <td>{{ team.highlights.타율1위 }}</td>
+                <td>{{ team.highlights.출루율1위 }}</td>
+                <td>{{ team.highlights.장타율1위 }}</td>
+                <td>{{ team.highlights.ERA1위 }}</td>
+
             </tr>
             {% empty %}
             <tr><td colspan="8">데이터가 없습니다.</td></tr>
@@ -52,9 +53,7 @@
                 <th>무</th>
                 <th>패</th>
                 <th>승률</th>
-                <th>득점</th>
-                <th>실점</th>
-                <th>조회수</th>
+
             </tr>
         </thead>
         <tbody>
@@ -74,9 +73,7 @@
                         0.000
                     {% endif %}
                 </td>
-                <td>{{ team.runs_scored|default:0 }}</td>
-                <td>{{ team.runs_allowed|default:0 }}</td>
-                <td>{{ team.views|intcomma|default:"0" }}</td>
+
             </tr>
             {% endwith %}
             {% empty %}
