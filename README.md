@@ -31,10 +31,9 @@ Dugout/
 ├── templates/             # 템플릿 (HTML)
 └── static/                 # 정적 파일 (CSS, JS 등)
 
-## 구동 전 준비
+## 구동 전 준비 및 메인 코드 설명
 
-1️. 프로젝트 클론 후 필수 패키지 설치 :
-
+1. 프로젝트 클론 후 필수 패키지 설치 :
 ```bash
 pip install -r requirements.txt
 
