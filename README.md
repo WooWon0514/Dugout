@@ -1,4 +1,4 @@
-소개
+## 소개
 Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양한 정보를 제공하는 웹 서비스입니다.
 - 인기순위
 - 팀 순위
@@ -7,7 +7,7 @@ Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양�
 등 다양한 통계를 제공하며,
 로그인 기능 / 회원가입 기능 등을 지원합니다.
 
-주요 기능
+## 주요 기능
 1. 로그인 / 회원가입 기능
 - Django 기본 인증 지원
 - Statiz API 토큰 발급 기능 구현
@@ -22,6 +22,7 @@ Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양�
 4. 구단별 선수 스탯
 - 타자 / 투수 통합 랭킹 페이지 제공
 
+## 
 Dugout/
 ├── Dugout/                # Django 프로젝트 설정
 ├── accounts/              # 사용자 인증 (로그인 / 회원가입)
@@ -30,7 +31,38 @@ Dugout/
 ├── templates/             # 템플릿 (HTML)
 └── static/                 # 정적 파일 (CSS, JS 등)
 
-메인 코드 설명
+## 구동 전 준비
+
+1️. 프로젝트 클론 후 필수 패키지 설치 :
+
+```bash
+pip install -r requirements.txt
+
+2. Statiz 데이터 수집 (터미널에서 명령어 실행) :
+1) 전체 데이터 한 번에 등록하기
+python manage.py import_all_data
+
+2) 개별적으로 등록하기
+# 선수 인기순위
+python manage.py import_player_rankings
+
+# 팀별 데이터
+python manage.py import_lg_data
+python manage.py import_doosan_data
+python manage.py import_hanwha_data
+python manage.py import_kia_data
+python manage.py import_kiwoom_data
+python manage.py import_kt_data
+python manage.py import_lotte_data
+python manage.py import_nc_data
+python manage.py import_samsung_data
+python manage.py import_ssg_data
+
+3. 서버 실행
+python manage.py runserver
+
+## 메인 코드 설명
+
 1. 로그인 기능
 # accounts/views.py
 from django.shortcuts import render, redirect
@@ -82,7 +114,7 @@ urlpatterns = [
 ]
 - /accounts/login/ → Django 기본 로그인
 - /accounts/signup/ → 회원가입
-  
+
 3. 팀 데이터 수집 및 저장
 # teams/utils.py
 import requests
