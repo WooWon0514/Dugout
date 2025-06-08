@@ -115,25 +115,7 @@ urlpatterns = [
 - /accounts/login/ → Django 기본 로그인
 - /accounts/signup/ → 회원가입
 
-3. 초기 데이터 준비 단계
-아래 커맨드들을 반드시 실행하여 최초 데이터 수집을 진행하고,
-이후 서버를 구동하면 정상적으로 팀/선수 데이터가 표시됩니다.
-# 선수 인기순위 수집
-python manage.py import_player_rankings
-
-# 팀별 데이터 수집 (반드시 모든 팀 실행)
-python manage.py import_lg_data
-python manage.py import_doosan_data
-python manage.py import_hanwha_data
-python manage.py import_kia_data
-python manage.py import_kiwoom_data
-python manage.py import_kt_data
-python manage.py import_lotte_data
-python manage.py import_nc_data
-python manage.py import_samsung_data
-python manage.py import_ssg_data
-  
-4. 팀 데이터 수집 및 저장
+3. 팀 데이터 수집 및 저장
 # teams/utils.py
 import requests
 from bs4 import BeautifulSoup
@@ -345,7 +327,7 @@ def save_team_data(team_data_list):
 - Statiz 페이지에서 크롤링한 데이터를 DB에 저장
 - update_or_create 사용으로 중복 없이 최신 데이터 유지
 
-5. 선수 인기순위
+4. 선수 인기순위
 # players/utils.py
 
 from selenium import webdriver
@@ -396,7 +378,7 @@ if __name__ == "__main__":
 - Selenium 사용해 Statiz 선수 인기순위 페이지 크롤링
 - 조회수 기반 상위 20명 선수 표시 가능
 
-6. 팀 상세 매치업 데이터 표시
+5. 팀 상세 매치업 데이터 표시
 # teams/models.py
 from django.db import models
 
@@ -443,7 +425,7 @@ class TeamWAR(models.Model):
 - 주요 스탯 → highlights JSON 저장
 - WAR 관련 데이터 → waa JSON 저장
 
-7. 템플릿 사용 예시
+6. 템플릿 사용 예시
 # teams/templates/teams/team_list.html
 {% load humanize %}
 {% load dict_filters %}
