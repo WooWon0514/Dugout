@@ -22,7 +22,7 @@ Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양�
 4. 구단별 선수 스탯
 - 타자 / 투수 통합 랭킹 페이지 제공
 
-Dugout/
+## Dugout/
 ├── Dugout/                # Django 프로젝트 설정
 ├── accounts/              # 사용자 인증 (로그인 / 회원가입)
 ├── players/               # 선수 데이터 관리
