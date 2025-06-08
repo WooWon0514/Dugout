@@ -43,10 +43,10 @@ pip install -r requirements.txt
 python manage.py import_all_data
 
 2) 개별적으로 등록하기
-선수 인기순위
+# 선수 인기순위
 python manage.py import_player_rankings
 
-팀별 데이터
+# 팀별 데이터
 python manage.py import_lg_data
 python manage.py import_doosan_data
 python manage.py import_hanwha_data
