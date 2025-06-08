@@ -28,8 +28,8 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/Dugout/accounts/templates" />
-        <option value="$MODULE_DIR$/Dugout/templates" />
         <option value="$MODULE_DIR$/Dugout/main/templates" />
+        <option value="$MODULE_DIR$/Dugout/teams/templates" />
       </list>
     </option>
   </component>

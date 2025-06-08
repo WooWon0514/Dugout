@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'accounts',
     'main',
+    'teams',
+    'players',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,8 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'accounts/templates',
             BASE_DIR / 'templates',
+            BASE_DIR / 'players/templates',
+            BASE_DIR / 'teams/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -132,3 +137,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
