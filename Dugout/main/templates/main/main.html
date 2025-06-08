@@ -28,34 +28,51 @@
       </div>
 
       <!-- 팀 순위 -->
-      <h4 class="mt-5 mb-3">팀 순위</h4>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card p-3">
-            <h6>승률 경기 승 무 패 타율 평균자책</h6>
-            <ul class="list-unstyled mb-0">
-              <li>1위. LG XXX</li>
-              <li>2위. SSG XXX</li>
-              <li>3위. 두산 XXX</li>
-              <li>4위. 롯데 XXX</li>
-              <li>5위. 한화 XXX</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card p-3">
-            <h6>승률 경기 승 무 패 타율 평균자책</h6>
-            <ul class="list-unstyled mb-0">
-              <li>1위. LG XXX</li>
-              <li>2위. SSG XXX</li>
-              <li>3위. 두산 XXX</li>
-              <li>4위. 롯데 XXX</li>
-              <li>5위. 한화 XXX</li>
-            </ul>
-          </div>
-        </div>
+<h4 class="mt-5 mb-3">팀 순위</h4>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card p-3">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-sm text-center align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>순위</th>
+              <th>팀명</th>
+              <th>승률</th>
+              <th>경기</th>
+              <th>승</th>
+              <th>무</th>
+              <th>패</th>
+              <th>타율</th>
+              <th>ERA</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for team in team_rankings %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ team.name }}</td>
+              <td>{{ team.win_rate }}</td>
+              <td>{{ team.games }}</td>
+              <td>{{ team.wins }}</td>
+              <td>{{ team.draws }}</td>
+              <td>{{ team.losses }}</td>
+              <td>{{ team.batting_avg }}</td>
+              <td>{{ team.era }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>
+     <div class="col-md-6">
+    <div class="card p-3 text-center text-muted">
+      <p>추가 정보나 광고 영역 등을 여기에 표시할 수 있습니다.</p>
+    </div>
+  </div>
+</div>
 
     <!-- 즐겨찾기 영역 -->
     <div class="col-lg-3">
