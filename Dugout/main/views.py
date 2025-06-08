@@ -27,8 +27,8 @@ def main_page(request):
             'draws': team.draws,
             'games': team.wins + team.losses + team.draws,
             'win_rate': round(team.wins / (team.wins + team.losses + team.draws + 1e-5), 3),
-            'batting_avg': getattr(stat, 'batting_avg', 'N/A'),
-            'era': getattr(stat, 'era', 'N/A'),
+            'batting_avg': round(stat.batting_avg, 3) if stat and stat.batting_avg is not None else 0.0,
+            'era': round(stat.era, 2) if stat and stat.era is not None else 0.0,
         })
 
     return render(request, 'main/main.html', {'team_rankings': team_data})

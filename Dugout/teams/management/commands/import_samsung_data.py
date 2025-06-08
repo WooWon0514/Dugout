@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from teams.models import Team
+from teams.models import Team, TeamStat
 
 class Command(BaseCommand):
     help = 'Import 삼성 라이온즈 team data'
@@ -40,7 +40,7 @@ class Command(BaseCommand):
             "구원": 0.89
         }
 
-        Team.objects.create(
+        samsung = Team.objects.create(
             name="삼성 라이온즈",
             wins=31,
             draws=1,
@@ -48,6 +48,11 @@ class Command(BaseCommand):
             highlights=highlights,
             matchups=matchups,
             waa=waa
+        )
+        TeamStat.objects.create(
+            team=samsung,
+            batting_avg=0.273,
+            era=4.00
         )
 
         self.stdout.write(self.style.SUCCESS("✅ 삼성 라이온즈 데이터 삽입 완료!"))
