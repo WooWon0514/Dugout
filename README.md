@@ -1,4 +1,4 @@
-소개
+## 소개
 Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양한 정보를 제공하는 웹 서비스입니다.
 - 인기순위
 - 팀 순위
@@ -7,7 +7,7 @@ Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양�
 등 다양한 통계를 제공하며,
 로그인 기능 / 회원가입 기능 등을 지원합니다.
 
-주요 기능
+## 주요 기능
 1. 로그인 / 회원가입 기능
 - Django 기본 인증 지원
 - Statiz API 토큰 발급 기능 구현
@@ -60,7 +60,7 @@ python manage.py import_ssg_data
 3. 서버 실행
 python manage.py runserver
 
-메인 코드 설명
+## 메인 코드 설명
 
 1. 로그인 기능
 # accounts/views.py
