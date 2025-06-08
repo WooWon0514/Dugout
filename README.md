@@ -1,14 +1,24 @@
-Dugout - KBO 리그 통계 사이트
-Dugout은 KBO 리그의 팀 / 선수 통계 데이터를 크롤링하여 보여주는 웹 서비스입니다.
-Statiz 데이터를 기반으로 인기순위, 팀 순위, 팀 상세 정보, 선수 순위 등을 제공합니다.
+소개
+Dugout은 KBO 리그의 팀 및 선수 통계 데이터를 기반으로 다양한 정보를 제공하는 웹 서비스입니다.
+- 인기순위
+- 팀 순위
+- 팀 상세 정보
+- 선수 랭킹
+등 다양한 통계를 제공하며,
+로그인 기능 / 회원가입 기능 등을 지원합니다.
 
 주요 기능
-1. 로그인 / 회원가입 기능 (Django 기본 인증 + Statiz API 토큰 발급 기능 구현)
+1. 로그인 / 회원가입 기능
+- Django 기본 인증 지원
+- Statiz API 토큰 발급 기능 구현
+
 2. KBO 팀 정보
 - 전체 팀 리스트
 - 팀별 상세 페이지 (라인업, 승패, 득실점, WAA, WAR 등)
+  
 3. 선수 인기순위
-- 선수 조회수 기반 랭킹 표시
+- 선수 조회수 기반 인기 랭킹 표시
+
 4. 구단별 선수 스탯
 - 타자 / 투수 통합 랭킹 페이지 제공
 
@@ -52,10 +62,11 @@ def signup_view(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
-- Django 기본 로그인 기능 지원
-- CustomAuthenticationForm 사용 → username과 password 입력
-- 로그인 성공 시 홈페이지로 리다이렉트
-
+- Django 기본 로그인 지원
+- CustomAuthenticationForm 사용 → username + password 입력
+- 회원가입 기능 지원
+- 로그인 성공 시 메인 페이지 리다이렉트
+  
 2. 로그인 관련 URL 구성
 # accounts/urls.py
 from django.urls import path
@@ -120,7 +131,7 @@ def fetch_and_save_teams():
             }
         )
 
-import requests
+import re
 from bs4 import BeautifulSoup
 
 def get_team_codes():
@@ -141,9 +152,7 @@ def get_team_codes():
 
     return teams
 
-# teams/utils.py (계속)
-
-import re
+import requests
 
 def fetch_team_details(t_code):
     url = f"https://statiz.sporki.com/team/?m=team&t_code={t_code}&year=2025"
@@ -188,9 +197,7 @@ def fetch_team_details(t_code):
         'highlights': highlights,
         'matchups': matchup_stats,
     }
-
-# utils.py 내부에 추가
-
+    
 def fetch_and_save_all_team_data():
     from .models import Team  # 필요한 경우만 import
     teams = get_team_codes()
@@ -219,9 +226,7 @@ def fetch_and_save_all_team_data():
 
         except Exception as e:
             print(f"❌ Failed {name}: {e}")
-
-
-# teams/utils.py
+            
 import requests
 from bs4 import BeautifulSoup
 
@@ -253,8 +258,6 @@ def fetch_team_data(team_code: str = '2002', year: int = 2025):
 
     return team_info
 
-# teams/utils.py
-
 from .constants import TEAM_CODES
 
 def fetch_all_teams_data(year: int = 2025):
@@ -270,9 +273,7 @@ def fetch_all_teams_data(year: int = 2025):
             print(f'❌ {team_name} 실패: {e}')
 
     return all_team_data
-
-# teams/utils.py
-
+    
 from .models import Team
 
 def save_team_data(team_data_list):
@@ -342,7 +343,8 @@ if __name__ == "__main__":
     for p in players:
         print(p)
         
-- 조회수 기반 상위 20명 선수 표시
+- Selenium 사용해 Statiz 선수 인기순위 페이지 크롤링
+- 조회수 기반 상위 20명 선수 표시 가능
 
 5. 팀 상세 매치업 데이터 표시
 # teams/models.py
@@ -387,9 +389,11 @@ class TeamWAR(models.Model):
     bench = models.FloatField()
     defense = models.FloatField()
     
-- 상대 팀별 승/무/패 데이터를 JSON 형식으로 저장 → 팀 상세 페이지에서 시각화
+- 상대 팀별 승/무/패 데이터 → matchups JSON 저장
+- 주요 스탯 → highlights JSON 저장
+- WAR 관련 데이터 → waa JSON 저장
 
-템플릿 사용 예시
+6. 템플릿 사용 예시
 # teams/templates/teams/team_list.html
 {% load humanize %}
 {% load dict_filters %}
@@ -476,3 +480,6 @@ class TeamWAR(models.Model):
     </table>
 </body>
 </html>
+
+- 팀 주요 통계 및 성적을 테이블 형태로 표시
+- highlights JSON을 활용하여 주간/시즌 MVP 표시 가능
