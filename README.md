@@ -35,7 +35,7 @@ Dugout/
 
 1️. 프로젝트 클론 후 필수 패키지 설치 :
 
-```bash
+```bash```
 pip install -r requirements.txt
 
 2. Statiz 데이터 수집 (터미널에서 명령어 실행) :
